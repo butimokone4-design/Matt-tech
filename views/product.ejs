@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= product.name %> | Matt Technologies</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <%- include("partials") %>
+
+  <main class="section">
+    <div class="container">
+
+      <a href="/shop">← Back to shop</a>
+
+      <div class="product-detail">
+
+        <div class="product-image-large">
+          <%= product.image || "📦" %>
+        </div>
+
+        <div class="product-info">
+
+          <div class="eyebrow">
+            <%= product.category %>
+          </div>
+
+          <h1><%= product.name %></h1>
+
+          <div class="price">
+            R<%= Number(product.price).toFixed(2) %>
+          </div>
+
+          <p>
+            <%= product.description || "Quality electronic spare part supplied by Matt Technologies." %>
+          </p>
+
+          <p>
+            <strong>Stock:</strong>
+            <%= product.stock %> available
+          </p>
+
+          <% if (product.stock > 0) { %>
+
+            <form action="/cart/add" method="POST">
+
+              <input
+                type="hidden"
+                name="productId"
+                value="<%= product.id %>"
+              >
+
+              <label for="quantity">Quantity</label>
+
+              <input
+                id="quantity"
+                type="number"
+                name="quantity"
+                value="1"
+                min="1"
+                max="<%= product.stock %>"
+              >
+
+              <button class="btn primary" type="submit">
+                Add to cart
+              </button>
+
+            </form>
+
+          <% } else { %>
+
+            <button class="btn" disabled>
+              Out of stock
+            </button>
+
+          <% } %>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
