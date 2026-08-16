@@ -1,0 +1,52 @@
+<header class="header">
+  <div class="container nav">
+    <a class="brand" href="/" aria-label="Matt Technologies home">
+      <img src="/matt-technologies-mark.png" alt="Matt Technologies logo">
+      <span class="brand-text">
+        <strong>Matt Technologies</strong>
+        <small>TV • CELLPHONE • ELECTRONICS</small>
+      </span>
+    </a>
+
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/shop">Shop</a>
+      <a href="/shop?category=TV%20Parts">TV Parts</a>
+      <a href="/shop?category=Cellphone%20Parts">Cellphone Parts</a>
+      <a href="/account">My Orders</a>
+      <% if (user) { %>
+        <a class="btn light" href="/logout">Logout</a>
+      <% } else { %>
+        <a class="btn light desktop-login" href="/login">Login</a>
+      <% } %>
+    </nav>
+
+    <div class="mobile-actions">
+      <a class="icon-btn" href="/shop" aria-label="Shop">🛒</a>
+      <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileMenu(this)">☰</button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="/">Home</a>
+    <a href="/shop">🛒 Shop all products</a>
+    <a href="/shop?category=TV%20Parts">📺 TV Parts</a>
+    <a href="/shop?category=Cellphone%20Parts">📱 Cellphone Parts</a>
+    <a href="/shop?category=Components">⚡ Components</a>
+    <a href="/shop?category=Tools">🛠️ Repair Tools</a>
+    <a href="/account">📦 My Orders</a>
+    <% if (user) { %>
+      <a href="/logout">Logout</a>
+    <% } else { %>
+      <a href="/login">Login / Register</a>
+    <% } %>
+  </div>
+</header>
+
+<script>
+function toggleMobileMenu(btn){
+  const menu=document.getElementById('mobileMenu');
+  const open=menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open?'true':'false');
+}
+</script>
